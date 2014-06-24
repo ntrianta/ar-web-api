@@ -33,6 +33,7 @@ import (
 	"github.com/argoeu/ar-web-api/app/recomputations"
 	"github.com/argoeu/ar-web-api/app/serviceFlavorAvailability"
 	"github.com/argoeu/ar-web-api/app/siteAvailability"
+	"github.com/argoeu/ar-web-api/app/statuses"
 	"github.com/argoeu/ar-web-api/app/voAvailability"
 	"github.com/gorilla/mux"
 	"log"
@@ -79,6 +80,8 @@ func main() {
 	//Recalculations
 	postSubrouter.HandleFunc("/api/v1/recomputations", Respond(recomputations.Create))
 	getSubrouter.HandleFunc("/api/v1/recomputations", Respond(recomputations.List))
+	
+	postSubrouter.HandleFunc("/api/v1/statuses", Respond(statuses.Create))
 
 	http.Handle("/", mainRouter)
 
